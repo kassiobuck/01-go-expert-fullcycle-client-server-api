@@ -90,7 +90,7 @@ func saveUSDBRL(usdbrl USDBRL) error {
 	_, err = q.ExecContext(ctx, usdbrl.Code, usdbrl.Codein, usdbrl.Name, usdbrl.High, usdbrl.Low, usdbrl.VarBid, usdbrl.PctChange, usdbrl.Bid, usdbrl.Ask, usdbrl.Timestamp, usdbrl.CreateDate)
 	if err != nil {
 		if ctx.Err() == context.DeadlineExceeded {
-			ctx.Err()
+			return ctx.Err()
 		}
 		return err
 	}
